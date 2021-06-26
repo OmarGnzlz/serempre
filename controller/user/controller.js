@@ -1,4 +1,3 @@
-const { nanoid } = require('nanoid')
 const md5 = require('md5')
 const store = require('./store')
 
@@ -53,7 +52,7 @@ const updateUser = async(body, id) => {
 const deleteUser = async(id) => {
     try {
 
-        const user = await store.findUSerById(id)
+        const user = await store.findUserById(id)
 
         if(!user){
             throw new Error('User doest not exists')

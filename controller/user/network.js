@@ -14,7 +14,7 @@ router.get('/', async(req, res) => {
 })
 router.post('/create', async(req, res) => {
     try {
-        const user = await controller.createUser(req.body)
+        await controller.createUser(req.body)
 
         response.success(req, res, {message: 'User succesfully create'}, 201)
     } catch (error) {
@@ -23,7 +23,7 @@ router.post('/create', async(req, res) => {
 })
 router.put('/update/:id', async(req, res) => {
     try {
-        const user = await controller.updateUser(req.body, req.params.id)
+        controller.updateUser(req.body, req.params.id)
 
         response.success(req, res, {message: 'User succesfully updated'}, 201)
     } catch (error) {
@@ -32,7 +32,7 @@ router.put('/update/:id', async(req, res) => {
 })
 router.delete('/delete/:id', async(req, res) => {
     try {
-        const user = await controller.deleteUser(req.params.id)
+        await controller.deleteUser(req.params.id)
 
         response.success(req, res, {message: 'User succesfully deleted'}, 201)
     } catch (error) {

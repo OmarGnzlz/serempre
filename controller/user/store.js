@@ -45,7 +45,7 @@ const remove = async(id) => {
     }
 }
 
-const findUSerById = async(id) => {
+const findUserById = async(id) => {
     try {
         const userRef = await firestore.collection('users').doc(id)
         const user = await userRef.get()
@@ -63,5 +63,5 @@ module.exports ={
     add, 
     update,
     remove,
-    findUSerById
+    findUserById
 }
