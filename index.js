@@ -14,4 +14,4 @@ Router(app)
 
 //app.listen(3000, console.log('Server listen on http://localhost:3000'))
 
-exports.app = functions.https.onRequest(app)
+exports.app = functions.http.onRequest(app)
