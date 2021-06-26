@@ -14,4 +14,4 @@ app.use(express.urlencoded({ extended: true }))
 Router(app)
 //app.listen(3000, console.log('Server listen on http://localhost:3000'))
 
-exports.app = functions.httpgit.onRequest(app)
+exports.app = functions.https.onRequest(app)
