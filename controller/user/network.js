@@ -16,7 +16,7 @@ router.post('/create', async(req, res) => {
     try {
         const user = await controller.createUser(req.body)
 
-        response.success(req, res, user, 201)
+        response.success(req, res, {message: 'User succesfully create'}, 201)
     } catch (error) {
         response.error(req, res, error.message, 500)
     }
@@ -25,7 +25,7 @@ router.put('/update/:id', async(req, res) => {
     try {
         const user = await controller.updateUser(req.body, req.params.id)
 
-        response.success(req, res, user, 201)
+        response.success(req, res, {message: 'User succesfully updated'}, 201)
     } catch (error) {
         response.error(req, res, error.message, 404)
     }
@@ -34,7 +34,7 @@ router.delete('/delete/:id', async(req, res) => {
     try {
         const user = await controller.deleteUser(req.params.id)
 
-        response.success(req, res, user, 201)
+        response.success(req, res, {message: 'User succesfully deleted'}, 201)
     } catch (error) {
         response.error(req, res, error.message, 404)
     }

@@ -1,4 +1,5 @@
 const { nanoid } = require('nanoid')
+const md5 = require('md5')
 const store = require('./store')
 
 const getAllUsers = async() => {
@@ -16,14 +17,15 @@ const createUser = async(body) => {
             throw new Error(error)
         }
 
+        const hashPassword = md5(password)
+
         const user = {
-            id: nanoid(),
             name,
             email,
-            password
+            password:hashPassword
         }
 
-        return await store.add(user)
+        await store.add(user)
     } catch (error) {
         throw new Error(error)
     }
@@ -35,22 +37,29 @@ const updateUser = async(body, id) => {
         if(!name || !email || !password){
             throw new Error(error)
         }
+        const hashPassword = md5(password)
 
         const user = {
-            id: nanoid(),
             name,
             email,
-            password
+            password:hashPassword
         }
 
-        return await store.update(user, id)
+        await store.update(user, id)
     } catch (error) {
         throw new Error(error)
     }
 }
 const deleteUser = async(id) => {
     try {
-        return await store.remove(id)
+
+        const user = await store.findUSerById(id)
+
+        if(!user){
+            throw new Error('User doest not exists')
+        }
+
+        await store.remove(id)
     } catch (error) {
         throw new Error(error)
     }
